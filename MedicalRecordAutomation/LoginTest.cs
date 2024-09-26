@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ThomsonReuters.MedicalRecordAutomation.Base;
+using ThomsonReuters.MedicalRecordAutomation.Pages;
 using ThomsonReuters.MedicalRecordAutomation.Utilities;
 
 namespace ThomsonReuters.MedicalRecordAutomation
@@ -20,9 +21,13 @@ namespace ThomsonReuters.MedicalRecordAutomation
 
         public void ValidLoginTest(string userName,string password, string expectedValue) 
         {
-            driver.FindElement(By.Id("authUser")).SendKeys(userName);
-            driver.FindElement(By.Id("clearPass")).SendKeys(password);
-            driver.FindElement(By.Id("login-button")).Click();
+            LoginPage loginPage = new LoginPage(driver);
+            loginPage.EnterUserName(userName);
+            loginPage.EnterPassword(password);
+            loginPage.ClickOnLogin();
+            //driver.FindElement(By.Id("authUser")).SendKeys(userName);
+            //driver.FindElement(By.Id("clearPass")).SendKeys(password);
+            //driver.FindElement(By.Id("login-button")).Click();
 
             Assert.That(driver.Title, Is.EqualTo(expectedValue));
         }
@@ -32,11 +37,12 @@ namespace ThomsonReuters.MedicalRecordAutomation
         [TestCase("saul","saul1234", "Invalid username or password")]
         public void InvalidLoginTest(string userName, string password, string expectedError)
         {
-            driver.FindElement(By.Id("authUser")).SendKeys(userName);
-            driver.FindElement(By.CssSelector("#clearPass")).SendKeys(password);
-            driver.FindElement(By.Id("login-button")).Click();
+            LoginPage loginPage = new LoginPage(driver);
+            loginPage.EnterUserName(userName);
+            loginPage.EnterPassword(password);
+            loginPage.ClickOnLogin();
 
-            string Actualerror = driver.FindElement(By.XPath("//p[contains(text(),'Invalid user')]")).Text;
+            string Actualerror = loginPage.GetErrorMessage();
             //Assert.That(Actualerror, Is.EqualTo(expectedError));
             Assert.That(Actualerror.Contains(expectedError)); 
                 
