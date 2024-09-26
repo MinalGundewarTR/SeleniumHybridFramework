@@ -13,7 +13,8 @@ namespace ThomsonReuters.MedicalRecordAutomation
     public class LoginTest : AutomationWrapper
     {
         [Test]
-        [TestCaseSource(typeof(DataSource),nameof(DataSource.ValidLoginData))]
+        [TestCaseSource(typeof(DataSource),nameof(DataSource.ValidLoginDataExcel))]
+        //[TestCaseSource(typeof(DataSource),nameof(DataSource.ValidLoginData))]
         //[TestCase("admin","pass","OpenEMR")]
         //[TestCase("accountant", "accountant", "OpenEMR")]
 
@@ -27,6 +28,7 @@ namespace ThomsonReuters.MedicalRecordAutomation
         }
 
         [Test]
+        //[TestCaseSource(typeof(DataSource),nameof(DataSource.InvalidLoginDataExcel))]
         [TestCase("saul","saul1234", "Invalid username or password")]
         public void InvalidLoginTest(string userName, string password, string expectedError)
         {

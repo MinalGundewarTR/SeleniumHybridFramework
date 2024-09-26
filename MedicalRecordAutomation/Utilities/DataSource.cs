@@ -31,5 +31,22 @@ namespace ThomsonReuters.MedicalRecordAutomation.Utilities
             finalDataSet[1] = dataSet2;
             return finalDataSet;
         }
+
+        /// <summary>
+        /// Method for fetching the data from excel dynamically.
+        /// </summary>
+        /// <returns></returns>
+        public static object[] ValidLoginDataExcel()
+        {
+            object[] finalData =  ExcelSource.GetSheetIntoObjectArray(@"C:\SeleniumTraining\AutomationFrameworkSolution\MedicalRecordAutomation\TestData\OpenEMR_Data.xlsx", "ValidLoginTest");
+            return finalData;
+        }
+
+        public static object[] InvalidLoginDataExcel()
+        {
+            object[] finalData = ExcelSource.GetSheetIntoObjectArray(@"C:\SeleniumTraining\AutomationFrameworkSolution\MedicalRecordAutomation\TestData\OpenEMR_Data.xlsx", "InvalidLoginTest");
+            return finalData;
+        }
+
     }
 }
