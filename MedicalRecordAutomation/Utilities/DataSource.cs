@@ -10,6 +10,8 @@ namespace ThomsonReuters.MedicalRecordAutomation.Utilities
     {
         /// <summary>
         /// Testdata for ValidLoginTest 
+        /// This class is dedicated to keep all the test data required for the test methods.
+        /// Create all testcase source as static methods.
         /// </summary>
         /// <returns></returns>
         public static object[] ValidLoginData()
